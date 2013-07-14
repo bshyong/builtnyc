@@ -1,6 +1,7 @@
 Builtnyc::Application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :users
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   # root route
   root 'pages#index'
