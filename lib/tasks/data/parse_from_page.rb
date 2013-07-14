@@ -70,7 +70,7 @@ CSV.foreach($input_filename) do |row|
       break if x.name == "h2"
     end
 
-    output.puts(CSV.generate_line([row[0], image_url, year_built, summary, architectural_style, governing_body, categories, nrhp_reference, address, summary]))
+    output.puts(CSV.generate_line([row[0], image_url, year_built, summary, architectural_style, governing_body, categories, nrhp_reference, address]))
     puts "done \n"
   rescue => e
     # case e.message
@@ -80,6 +80,7 @@ CSV.foreach($input_filename) do |row|
     # else
       puts "something went wrong!  skipping"
       puts $!.message
+      output.puts(CSV.generate_line([]))
     # end
   end
 end
