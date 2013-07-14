@@ -42,3 +42,27 @@ gem 'jbuilder', '~> 1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'cancan'
+gem 'devise'
+gem 'figaro'
+gem 'haml-rails'
+gem 'rolify'
+gem 'sendgrid'
+gem 'simple_form', '>= 3.0.0.rc'
+gem 'thin'
+
+group :development do
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'html2haml'
+  gem 'quiet_assets'
+  gem 'rb-fchange', :require=>false
+  gem 'rb-fsevent', :require=>false
+  gem 'rb-inotify', :require=>false
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+end
+
