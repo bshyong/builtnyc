@@ -44,15 +44,16 @@ end
 doc = Nokogiri::HTML(File.open($input_filename).read)
 
 # fetch all buildings
-building_rows = doc.css('.vcard')
+building_rows = doc.css('tr.vcard')
 
 # get attributes and write to CSV file
-building_rows.each do |br|
+building_rows.each_with_index do |br, index|
   name = br.css('td')[0].content
   puts "writing #{name}"
   address = br.css('td.adr span.label')[0].content
-  latitude = br.css('td.adr span.latitude')[0].content
-  longitude = br.css('td.adr span.longitude')[0].content
+  latlng = doc.css('span.vcard')[index].css('span.geo').text
+  latitude = latlng.split(';').first
+  longitude = latlng.split(';').last
   city = br.css('td.locality')[0].content
   link = "http://en.wikipedia.org" + br.css('td a')[0].attr('href')
   output.puts(CSV.generate_line([name, address, latitude, longitude, city, link]))
