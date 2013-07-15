@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130714224452) do
+ActiveRecord::Schema.define(version: 20130715024534) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories_places", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "place_id"
+  end
+
+  add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id"
+  add_index "categories_places", ["place_id"], name: "index_categories_places_on_place_id"
+
+  create_table "places", force: true do |t|
+    t.text     "summary"
+    t.string   "year_built"
+    t.string   "image_url"
+    t.string   "arch_style"
+    t.string   "gov_body"
+    t.string   "nhrp_ref"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "location"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "locality"
+    t.string   "link"
+  end
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
