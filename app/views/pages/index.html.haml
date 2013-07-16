@@ -1,23 +1,40 @@
-.container
-	.map
-		%iframe{:frameborder => "0", :height => "100%", :src => "http://a.tiles.mapbox.com/v3/ghholt.map-7po6ov6d.html#18/40.72048898306437/-73.99662187099456", :width => "100%"}
+%script{:src => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.js"}
+%link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.css", :rel => "stylesheet"}/
+/[if lte IE 8]
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.ie.css' rel='stylesheet' >
+#map
+:javascript
+  var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
 
-.container
-	.information-box.span_4_of_12.push
-
-		.building-image
-			= image_tag("banner.jpg", alt: "background", :class => "background-image span_12_of_12")
-		.building-image-thumbnail	
-			= image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
-			= image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
-			= image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
-		.building-information
-			%h2 Building title goes here 
-			%p.coordinates Lat: coordinates go here 
-			%p.coordinates Lon: coordinates go here
-			%p.building-description 
-				Culpa master cleanse direct trade sed. Asymmetrical culpa gluten-free selfies magna, consectetur officia. Pinterest ex incididunt, lo-fi forage do lomo fashion axe gluten-free DIY hoodie retro. Ad incididunt mumblecore, mustache keffiyeh shoreditch semiotics raw denim tumblr chambray pork belly banjo brunch sint. Brunch vinyl ugh, do jean shorts retro sunt duis swag consectetur eiusmod enim vegan mollit. Culpa nesciunt laboris lo-fi lomo butcher, 8-bit McSweeney's. Yr mollit bespoke deep v tousled velit.
-
-				Post-ironic deep v thundercats 3 wolf moon Etsy. Put a bird on it plaid mumblecore skateboard, next level keytar gentrify selfies Banksy anim laboris. Art party laboris salvia velit delectus Williamsburg. Forage nesciunt vero, aliquip keffiyeh mustache sint duis Schlitz tattooed Austin pariatur Tonx. Selfies Neutra banjo nihil sapiente, do cornhole Williamsburg bitters typewriter authentic bicycle rights keytar craft beer. Cupidatat fashion axe raw denim, pop-up 3 wolf moon blog incididunt cardigan. Tattooed anim occupy, helvetica Pinterest tofu accusamus sint locavore.description goes here
-			%h3 Categories:
-			%p Neo-classical, New York, Lower Manhattan, Brick
+  L.mapbox.markerLayer(
+    { type: "FeatureCollection", 
+    id:'ghholt.map-7po6ov6d',
+    "features": [
+    {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-74.011111, 40.714722]
+      },
+      properties: {
+          title: 'A Single Marker',
+          description: 'Just one of me',
+          'marker-size': 'large',
+          'marker-color': '#f0a'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-74.011188, 40.714786]
+      },
+      properties: {
+          title: 'A Single Marker',
+          description: 'Just one of me',
+          'marker-size': 'large',
+          'marker-color': '#f0a'
+      }
+    }
+    ]
+  }).addTo(map);

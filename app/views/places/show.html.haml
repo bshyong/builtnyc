@@ -1,0 +1,14 @@
+.container
+	.information-box.span_4_of_12.push
+		.building-image
+			= image_tag( @place.image_url, alt: "background", :class => "background-image span_12_of_12")
+		.building-image-thumbnail	
+			= image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
+		.building-information
+			%h2=@place.name
+			%p.coordinates="Lat: #{@place.latitude}"
+			%p.coordinates="Lon: #{@place.longitude}"
+			%p.building-description="Summary: #{@place.summary}"
+			
+			%h3 Categories:
+			%p=@place.categories.map(&:name)
