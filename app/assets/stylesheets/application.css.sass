@@ -1,7 +1,31 @@
 // Font Sizes ---------------------------------------------------------
 
+@import url(fonts.googleapis.com/css?family=Numans)
+
 $base-font-size: 12px
 $base-line-height: 21px
+
+// Change this font
+$sans-serif: 'Numans', sans-serif
+
+
+// Fonts -----------------------------------------*
+h1
+  font-family: $sans-serif
+h2
+  font-family: $sans-serif
+h3
+  font-family: $sans-serif
+h4
+  font-family: $sans-serif
+p
+  font-family: $sans-serif
+
+
+// Global Styles -----------------------------------------*
+.center
+  margin-left: auto
+  margin-right: auto
 
 .brand
   float: left
@@ -26,3 +50,143 @@ ul.nav li
 #flash_alert
   background-color: #FCC
   border: solid 1px #C66
+
+.body, html
+  height: 100%
+  margin: 0 
+  padding: 0
+  position: relative
+
+
+// Map Information -----------------------------------------*
+.container
+  height: 100%
+
+  .map
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+
+// Building Information -----------------------------------------*
+.container
+  height: 100%
+
+.information-box 
+  // Positions information box to take 100% height of screen
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  background-color: white
+  border-left: 1.5em solid white
+  
+  .building-image
+    min-height: 45%
+    overflow: hidden
+    position: relative
+    z-index: 1
+
+    .background-image
+      // Get this to actually center on the center of the image
+      height: 100%
+      width: auto
+      min-width: 100%
+      min-height: 400px
+      position: absolute
+
+  .building-image-thumbnail
+    margin-top: 3%
+    margin-right: 3%
+
+    .thumbnail
+      width: 60px 
+      min-height: 60px
+
+  .building-information
+    margin: 2.5% 0
+
+    .coordinates
+      display: inline
+      margin-right: 3%
+      font-family: $sans-serif
+
+
+/*  GRID OF TWELVE   ============================================================================= */
+
+.span_12_of_12 
+  width: 100%
+
+.span_11_of_12 
+  width: 91.46%
+
+.span_10_of_12 
+  width: 83%
+
+.span_9_of_12 
+  width: 74.54%
+
+.span_8_of_12 
+  width: 66.08%
+
+.span_7_of_12 
+  width: 57.62% 
+
+.span_6_of_12 
+  width: 49.16% 
+
+.span_5_of_12 
+  width: 40.7% 
+
+.span_4_of_12 
+  width: 32.24% 
+
+.span_3_of_12 
+  width: 23.78%
+
+.span_2_of_12 
+  width: 15.32% 
+
+.span_1_of_12 
+  width: 6.86% 
+
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) 
+  .span_12_of_12 
+    width: 100% 
+
+  .span_11_of_12 
+    width: 100% 
+
+  .span_10_of_12 
+    width: 100% 
+
+  .span_9_of_12 
+    width: 100% 
+
+  .span_8_of_12 
+    width: 100% 
+
+  .span_7_of_12 
+    width: 100% 
+
+  .span_6_of_12 
+    width: 100% 
+
+  .span_5_of_12 
+    width: 100% 
+
+  .span_4_of_12 
+    width: 100% 
+
+  .span_3_of_12 
+    width: 100% 
+
+  .span_2_of_12 
+    width: 100% 
+
+  .span_1_of_12 
+    width: 100% 
