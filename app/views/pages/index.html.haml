@@ -6,35 +6,6 @@
 :javascript
   var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
 
-  L.mapbox.markerLayer(
-    { type: "FeatureCollection", 
-    id:'ghholt.map-7po6ov6d',
-    "features": [
-    {
-      type: 'Feature',
-      geometry: {
-          type: 'Point',
-          coordinates: [-74.011111, 40.714722]
-      },
-      properties: {
-          title: 'A Single Marker',
-          description: 'Just one of me',
-          'marker-size': 'large',
-          'marker-color': '#f0a'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-          type: 'Point',
-          coordinates: [-74.011188, 40.714786]
-      },
-      properties: {
-          title: 'A Single Marker',
-          description: 'Just one of me',
-          'marker-size': 'large',
-          'marker-color': '#f0a'
-      }
-    }
-    ]
-  }).addTo(map);
+  var markerLayer = L.mapbox.markerLayer().loadURL('/place/index.json');
+
+  map.addLayer(markerLayer);
