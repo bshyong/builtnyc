@@ -25,7 +25,8 @@ count = 0
 data.each do |row|
   puts "processing row #{count += 1}"
   puts "creating place #{row[0]}"
-  place = Place.find_or_create_by_name :name => row[0].chomp,
+  Place.attr_accessible :name, :location, :latitude, :longitude, :locality, :link, :summary, :year_built, :image_url, :arch_style, :gov_body, :nrhp_ref
+  place = Place.find_or_create_by_name(:name => row[0].chomp,
                                        :location => row[1],
                                        :latitude => row[2],
                                        :longitude => row[3],
@@ -36,7 +37,7 @@ data.each do |row|
                                        :image_url => ("http:" + row[8] rescue nil),
                                        :arch_style => row[9],
                                        :gov_body => row[10],
-                                       :nrhp_ref => row[12]
+                                       :nrhp_ref => row[12])
 
   categories = eval(row[11]) rescue nil
   next puts "skipping; no categories" if categories.blank?
