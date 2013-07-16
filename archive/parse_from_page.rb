@@ -59,10 +59,10 @@ CSV.foreach($input_filename) do |row|
     year_built = doc.css('table.infobox th:contains("Built:")').first.next_element.text rescue nil
     # architect =
     # developer =
-    architectural_style = doc.css('table.infobox th:contains("Architectural style:")').first.next_element.text rescue nil
+    architectural_style = doc.css('table.infobox th:contains("Architectural")').first.next_element.text rescue nil
     governing_body = doc.css('table.infobox th:contains("Governing body:")').first.next_element.text rescue nil
     categories = doc.css('#mw-normal-catlinks li a').map{|c| c.text} rescue nil
-    nrhp_reference = doc.css('table.infobox th:contains("NRHP Reference#:")').first.next_element.text rescue nil
+    nrhp_reference = doc.css('table.infobox th:contains("NRHP")').first.next_element.text rescue nil
     address = doc.css('table.infobox th:contains("Location:")').first.next_element.text rescue nil
     summary = ""
     doc.css('#mw-content-text').children.each do |x|

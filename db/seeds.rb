@@ -16,3 +16,33 @@ puts 'DEFAULT USERS'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+
+puts 'seed data'
+data = CSV.read("#{Rails.root}/lib/seed_data/clean_seed_data.csv", :encoding => "windows-1251:utf-8")
+# shift to get rid of headers
+data.shift
+count = 0
+data.each do |row|
+  puts "processing row #{count += 1}"
+  puts "creating place #{row[0]}"
+  place = Place.find_or_create_by_name :name => row[0].chomp,
+                                       :location => row[1],
+                                       :latitude => row[2],
+                                       :longitude => row[3],
+                                       :locality => row[4],
+                                       :link => row[5],
+                                       :summary => row[6],
+                                       :year_built => row[7],
+                                       :image_url => ("http:" + row[8] rescue nil),
+                                       :arch_style => row[9],
+                                       :gov_body => row[10],
+                                       :nrhp_ref => row[12]
+
+  categories = eval(row[11]) rescue nil
+  next puts "skipping; no categories" if categories.blank?
+  categories.each do |c|
+    puts "adding category #{c}"
+    place.categories << Category.find_or_create_by_name(:name => c.strip)
+  end
+  puts "done\n\n"
+end
