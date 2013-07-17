@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130716204609) do
+ActiveRecord::Schema.define(version: 20130717213856) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20130716204609) do
   create_table "places", force: true do |t|
     t.text     "summary"
     t.string   "year_built"
-    t.string   "image_url"
+    t.text     "image_url",  limit: 255
     t.string   "arch_style"
     t.string   "gov_body"
     t.string   "nrhp_ref"
