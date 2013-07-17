@@ -1,11 +1,21 @@
-%script{:src => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.js"}
-%link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.css", :rel => "stylesheet"}/
-/[if lte IE 8]
-  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.ie.css' rel='stylesheet' >
 #map
 :javascript
   var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
-
   var markerLayer = L.mapbox.markerLayer().loadURL('/place/index.json');
-
   map.addLayer(markerLayer);
+
+/ information about Place
+.container
+  .information-box.span_4_of_12.push
+    .building-image
+      = image_tag( @place.image_url, alt: "background", :class => "background-image span_12_of_12")
+    .building-image-thumbnail
+      = image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
+    .building-information
+      %h2=@place.name
+      %p.coordinates="Lat: #{@place.latitude}"
+      %p.coordinates="Lon: #{@place.longitude}"
+      %p.building-description="Summary: #{@place.summary}"
+
+      %h3 Categories:
+      %p=@place.categories.map(&:name)
