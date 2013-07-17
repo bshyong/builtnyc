@@ -1,5 +1,5 @@
 !!!
-%html
+%html{"ng-app" => "built-nyc"}
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       %title= content_for?(:title) ? yield(:title) : "Builtnyc"
@@ -10,6 +10,8 @@
         %link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.css", :rel => "stylesheet"}/
         /[if lte IE 8]
           <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.ie.css' rel='stylesheet' >
+        %script{:src => "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"}
+        %script{:src => "http://code.angularjs.org/1.0.7/angular-sanitize.min.js"}
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}

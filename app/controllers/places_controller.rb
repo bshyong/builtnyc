@@ -1,16 +1,21 @@
 class PlacesController < ApplicationController
 
 	def show
-		@place = Place.find(params[:id]) rescue nil 
-		redirect_to root_url if @place.nil?
+		@place = Place.find(params[:id]) rescue nil
+		redirect_to root_url if @place.nil? and return
+
+		respond_to do |format|
+			format.html
+			format.json{render :json => @place.to_json(:include => {:categories => {:only => :name}})}
+		end
+
 	end
 
-	def index 
+	def index
 		places_list = []
 
-		Place.all.each do | p | 
+		Place.all.each do | p |
 			places_list<<
-
 			{
 			  type: 'Feature',
 			  geometry: {
@@ -21,19 +26,20 @@ class PlacesController < ApplicationController
 				  title: p.name,
 				  description: p.name,
 				  'marker-size' => 'small',
-				  'marker-color' => '#f0a'
+				  'marker-color' => '#f0a',
+				  id: p.id
 			  }
 			}
-		end 
+		end
 
 
-		places = { 
-			type: "FeatureCollection", 
+		places = {
+			type: "FeatureCollection",
 			id:'ghholt.map-7po6ov6d',
-			"features" => places_list 
+			"features" => places_list
 		}
 
-		respond_to do | format |
+		respond_to do |format|
 			format.json{render :json => places}
 		end
 	end

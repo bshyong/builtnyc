@@ -1,21 +1,63 @@
 #map
-:javascript
-  var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
-  var markerLayer = L.mapbox.markerLayer().loadURL('/place/index.json');
-  map.addLayer(markerLayer);
 
 / information about Place
 .container
-  .information-box.span_4_of_12.push
-    .building-image
-      = image_tag( @place.image_url, alt: "background", :class => "background-image span_12_of_12")
-    .building-image-thumbnail
-      = image_tag("banner.jpg", alt: "background", :class => "thumbnail span_12_of_12")
-    .building-information
-      %h2=@place.name
-      %p.coordinates="Lat: #{@place.latitude}"
-      %p.coordinates="Lon: #{@place.longitude}"
-      %p.building-description="Summary: #{@place.summary}"
+  .information-box.span_4_of_12.push{"ng-controller" => "PlacePanelCtl", :id => "PlacePanelCtl", :style => "z-index:9999;"}
+    %h2{"ng-hide" => "initialized"} Click a marker on the map!
+    .building-image{"ng-hide" => "!initialized"}
+      = image_tag(nil, "ng-src" => "{{place.image_url}}", alt: "background", :class => "background-image span_12_of_12")
+    .building-image-thumbnail{"ng-hide" => "!initialized"}
+      = image_tag(nil, "ng-src" => "{{place.image_url}}", alt: "background", :class => "thumbnail span_12_of_12")
+    .building-information{"ng-hide" => "!initialized"}
+      %h2
+        {{place.name}}
+      %p.coordinates
+        Lat: {{place.latitude}}
+      %p.coordinates
+        Lon: {{place.longitude}}
+      %p.building-description{"ng-bind-html" => "place.summary"}
 
       %h3 Categories:
-      %p=@place.categories.map(&:name)
+      %p
+        %ul
+          %li{"ng-repeat" => "category in place.categories"}
+            {{category.name}}
+
+:javascript
+  // mapbox scripts
+  var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
+  // load markers from server
+  var markerLayer = L.mapbox.markerLayer().loadURL('/place/index.json');
+  map.addLayer(markerLayer);
+  markerLayer.on('click', function(e){
+    console.log(e.layer.feature.properties['id']);
+    var app = document.getElementById('PlacePanelCtl');
+    var scope = angular.element(app).scope();
+    scope.$apply(function(){
+      scope.fetchPlace(e.layer.feature.properties['id']);
+      scope.initialized = true;
+    });
+  });
+
+  // angular scripts
+  var app = angular.module('built-nyc', ['ngSanitize']);
+  app.controller('PlacePanelCtl', function($scope){
+    $scope.fetchPlace = function(id){
+      // fetch specific place from server
+      $.ajax({
+        type : 'GET',
+        dataType : 'json',
+        contentType: "application/json; charset=utf-8",
+        url: '/place/'+id+'.json',
+        data: {},
+        success: function(data){
+          $scope.$apply(function(){ //$apply the changes when marker is clicked
+            $scope.place = data;
+          });
+        },
+        error : function(xhr, ajaxOptions, thrownError) {
+          console.log( "Error: " + xhr.responseText + "\n" + thrownError );
+        }
+      });
+    }
+  });
