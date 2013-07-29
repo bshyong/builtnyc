@@ -5,6 +5,7 @@
       %title= content_for?(:title) ? yield(:title) : "Builtnyc"
       %meta{:content => content_for?(:description) ? yield(:description) : "Builtnyc", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
+        = stylesheet_link_tag "12cols", :media => "all"
         = javascript_include_tag "application"
         %script{:src => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.js"}
         %link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.css", :rel => "stylesheet"}/

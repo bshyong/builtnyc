@@ -1,5 +1,3 @@
-#map
-
 / information about Place
 .container
   .information-box.span_4_of_12.push{"ng-controller" => "PlacePanelCtl", :id => "PlacePanelCtl", :style => "z-index:9999;"}
@@ -22,6 +20,14 @@
         %ul
           %li{"ng-repeat" => "category in place.categories"}
             {{category.name}}
+
+
+%script{:src => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.js"}
+%link{:href => "http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.css", :rel => "stylesheet"}/
+/[if lte IE 8]
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.0/mapbox.ie.css' rel='stylesheet' >
+
+#map
 
 :javascript
   // mapbox scripts
