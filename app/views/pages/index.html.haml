@@ -1,6 +1,12 @@
 / information about Place
 .container
   .information-box.span_4_of_12.push{"ng-controller" => "PlacePanelCtl", :id => "PlacePanelCtl", :style => "z-index:9999;"}
+    .navbar.span_12_of_12{:style => 'z-index:9999;height:30px;background:white;'}
+    - if user_signed_in?
+      = link_to "Sign out", destroy_user_session_path, :method => :delete
+    - else
+      = link_to "Sign in", new_user_session_path
+      = link_to "Sign up", new_user_registration_path
     %h2{"ng-hide" => "initialized"} Click a marker on the map!
     .building-image{"ng-hide" => "!initialized"}
       = image_tag(nil, "ng-src" => "{{place.image_url}}", alt: "background", :class => "background-image span_12_of_12")
