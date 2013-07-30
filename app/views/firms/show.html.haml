@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @firm.name
+%p
+  %b Url:
+  = @firm.url
+%p
+  %b Principals:
+  = @firm.principals
+%p
+  %b Address:
+  = @firm.address
+%p
+  %b Zipcode:
+  = @firm.zipcode
+%p
+  %b City:
+  = @firm.city
+%p
+  %b State:
+  = @firm.state
+
+= link_to 'Edit', edit_firm_path(@firm)
+\|
+= link_to 'Back', firms_path

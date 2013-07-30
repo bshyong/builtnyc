@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130717213856) do
+ActiveRecord::Schema.define(version: 20130730002217) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20130717213856) do
   add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id"
   add_index "categories_places", ["place_id"], name: "index_categories_places_on_place_id"
 
+  create_table "firms", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.text     "principals"
+    t.string   "address"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "places", force: true do |t|
     t.text     "summary"
     t.string   "year_built"
@@ -43,7 +55,10 @@ ActiveRecord::Schema.define(version: 20130717213856) do
     t.string   "longitude"
     t.string   "locality"
     t.string   "link"
+    t.integer  "firm_id"
   end
+
+  add_index "places", ["firm_id"], name: "index_places_on_firm_id"
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"

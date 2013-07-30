@@ -1,0 +1,31 @@
+%h1 Listing firms
+
+%table
+  %tr
+    %th Name
+    %th Url
+    %th Principals
+    %th Address
+    %th Zipcode
+    %th City
+    %th State
+    %th
+    %th
+    %th
+
+  - @firms.each do |firm|
+    %tr
+      %td= firm.name
+      %td= firm.url
+      %td= firm.principals
+      %td= firm.address
+      %td= firm.zipcode
+      %td= firm.city
+      %td= firm.state
+      %td= link_to 'Show', firm
+      %td= link_to 'Edit', edit_firm_path(firm)
+      %td= link_to 'Destroy', firm, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Firm', new_firm_path
