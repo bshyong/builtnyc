@@ -3,8 +3,7 @@ Builtnyc::Application.routes.draw do
   resources :firms
 
   get '/place/index', :to => 'places#index'
-
-  get '/place(/:id)', :to => 'places#show'
+  get '/place(/:id)', :to => 'places#show', :as => "place"
 
 
   devise_for :users

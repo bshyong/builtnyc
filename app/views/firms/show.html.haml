@@ -21,6 +21,11 @@
 %p
   %b State:
   = @firm.state
+%p
+  %b Places:
+  %ul
+  - @firm.places.each do |p|
+    %li= link_to p.name, p
 
 = link_to 'Edit', edit_firm_path(@firm)
 \|
