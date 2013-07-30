@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730002217) do
+ActiveRecord::Schema.define(version: 20130730003254) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 20130730002217) do
     t.string   "locality"
     t.string   "link"
     t.integer  "firm_id"
+    t.string   "address"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state"
   end
 
   add_index "places", ["firm_id"], name: "index_places_on_firm_id"

@@ -2,7 +2,9 @@ Builtnyc::Application.routes.draw do
 
   resources :firms
 
+  get '/place/new', :to => 'places#new', :as => "new_place"
   get '/place/index', :to => 'places#index'
+  post '/places', :to => 'places#create', :as => "places"
   get '/place(/:id)', :to => 'places#show', :as => "place"
 
 
