@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
 
   has_and_belongs_to_many :categories
   belongs_to :firm
+  validates :name, :address, :summary, :presence => {:message => "This field cannot be blank!"}
 
   def summary
     begin

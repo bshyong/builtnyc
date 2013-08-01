@@ -32,7 +32,7 @@ class PlacesController < ApplicationController
 	def index
 		places_list = []
 
-		Place.all.each do | p |
+		Place.where('latitude IS NOT NULL').where('longitude IS NOT NULL').each do | p |
 			places_list<<
 			{
 			  type: 'Feature',

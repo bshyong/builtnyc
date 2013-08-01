@@ -4,6 +4,8 @@
     .navbar.span_12_of_12{:style => 'z-index:9999;height:30px;background:white;'}
     - if user_signed_in?
       = link_to "Sign out", destroy_user_session_path, :method => :delete
+      = link_to "Add a place", new_place_path
+      = link_to "Add your firm", new_firm_path
     - else
       = link_to "Sign in", new_user_session_path
       = link_to "Sign up", new_user_registration_path
@@ -36,21 +38,6 @@
 #map
 
 :javascript
-  // mapbox scripts
-  var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
-  // load markers from server
-  var markerLayer = L.mapbox.markerLayer().loadURL('/place/index.json');
-  map.addLayer(markerLayer);
-  markerLayer.on('click', function(e){
-    console.log(e.layer.feature.properties['id']);
-    var app = document.getElementById('PlacePanelCtl');
-    var scope = angular.element(app).scope();
-    scope.$apply(function(){
-      scope.fetchPlace(e.layer.feature.properties['id']);
-      scope.initialized = true;
-    });
-  });
-
   // angular scripts
   var app = angular.module('built-nyc', ['ngSanitize']);
   app.controller('PlacePanelCtl', function($scope){
@@ -60,7 +47,7 @@
         type : 'GET',
         dataType : 'json',
         contentType: "application/json; charset=utf-8",
-        url: '/place/'+id+'.json',
+        url: '/places/'+id+'.json',
         data: {},
         success: function(data){
           $scope.$apply(function(){ //$apply the changes when marker is clicked
@@ -72,4 +59,18 @@
         }
       });
     }
+  });
+  // mapbox scripts
+  var map = L.mapbox.map('map', 'ghholt.map-7po6ov6d');
+  // load markers from server
+  var markerLayer = L.mapbox.markerLayer().loadURL('/places.json');
+  map.addLayer(markerLayer);
+  markerLayer.on('click', function(e){
+    console.log(e.layer.feature.properties['id']);
+    var app = document.getElementById('PlacePanelCtl');
+    var scope = angular.element(app).scope();
+    scope.$apply(function(){
+      scope.fetchPlace(e.layer.feature.properties['id']);
+      scope.initialized = true;
+    });
   });

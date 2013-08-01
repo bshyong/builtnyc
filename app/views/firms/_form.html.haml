@@ -4,7 +4,8 @@
   .form-inputs
     = f.input :name
     = f.input :url
-    = f.input :principals
+    / = f.label :principals
+    = f.input :principals, :label => "Principals (Please separate each name with a comma)<br />"
     = f.input :address
     = f.input :zipcode
     = f.input :city
