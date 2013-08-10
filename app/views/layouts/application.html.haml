@@ -1,3 +1,5 @@
+/ TODO: get this working so we see the ascii
+/ = render 'layouts/liberty'
 !!!
 %html{"ng-app" => "built-nyc"}
   %head
@@ -15,13 +17,15 @@
         %script{:src => "http://code.angularjs.org/1.0.7/angular-sanitize.min.js"}
         = csrf_meta_tags
         = yield(:head)
+        %liberty
 
   %body{:class => "#{controller_name} #{action_name}"}
     #container.container
-      %header
-        / = render 'layouts/navigation'
+      %header#header
+        = render 'layouts/navigation'
         = render 'layouts/messages'
       #main{:role => "main"}
         = yield
-      %footer
+      %footer#footer
+        = render 'layouts/footer'
     / ! end of #container
