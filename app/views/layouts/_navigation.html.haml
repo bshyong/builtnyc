@@ -11,7 +11,7 @@
       = link_to 'Edit account', edit_user_registration_path, :class=>'light'
     - if current_user.has_role? :admin
       %li
-        = link_to 'Admin', users_path, :class=>'light'
+        = link_to 'Admin', rails_admin_path, :class=>'light'
   - else
     %li
       = link_to 'Sign up', new_user_registration_path, :class=>'light'
