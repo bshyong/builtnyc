@@ -5,12 +5,9 @@
     = f.input :summary
     = f.input :year_built
     = f.input :image_url
-    = f.label :arch_style, "Architectural style"
-    = f.input :arch_style
-    = f.input :gov_body
-    = f.input :nrhp_ref
+    = f.input :arch_style, label: "Architectural style"
     = f.input :name
-    = f.input :location
+    = f.input :location, label: "Neighborhood"
     = f.input :address
     = f.input :city
     = f.input :state
@@ -18,3 +15,5 @@
 
   .form-actions
     = f.button :submit
+
+= link_to "Back", root_path, "data-no-turbolink" => "true"
