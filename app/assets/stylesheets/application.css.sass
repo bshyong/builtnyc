@@ -1,12 +1,12 @@
 // Font Sizes ---------------------------------------------------------
 
-@import url(http://fonts.googleapis.com/css?family=Numans)
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700)
 
 $base-font-size: 12px
 $base-line-height: 21px
 
 // Change this font
-$sans-serif: 'Numans', sans-serif
+$sans-serif: 'source sans pro', sans-serif
 
 
 // Fonts -----------------------------------------*
@@ -23,6 +23,16 @@ p
 ul
   font-family: $sans-serif
 
+// weights
+.extra-light
+  font-weight: 200
+.light
+  font-weight: 300
+.regular
+  font-weight: 400
+.bold
+  font-weight: 700
+
 // Map Styling -----------------------------------------*
 
 #map
@@ -30,6 +40,7 @@ ul
   top: 0
   bottom: 0
   width: 100%
+  z-index: -1
 
 
 
@@ -40,15 +51,23 @@ ul
 
 .brand
   float: left
-  padding-right: 8px
 
 ul.nav
   list-style: none
-  margin: 0 0 2em
+  margin: 0 2em 2em
   padding: 0
 
 ul.nav li
   display: inline
+
+ul.nav li a
+  color: white
+  padding: 1em
+  text-align: center
+  float: right
+  text-decoration: none
+  &:hover
+    opacity: 0.8
 
 #flash_notice, #flash_alert
   padding: 5px 8px
@@ -69,17 +88,21 @@ ul.nav li
   position: relative
   line-height: 1.2em
 
+body
+  margin: 0
+
 
 // Map Information -----------------------------------------*
 .container
   height: 100%
 
-  .map
+  #map
     width: 100%
     position: absolute
     top: 0
     left: 0
     bottom: 0
+    margin-top: 4em
 
 // Building Information -----------------------------------------*
 .container
@@ -95,6 +118,7 @@ ul.nav li
   border-left: 1.5em solid white
   overflow: auto
   padding: 0 30px 10px
+  margin-top: 3em
 
   .building-image
     min-height: 45%
@@ -125,3 +149,112 @@ ul.nav li
       display: inline
       margin-right: 3%
       font-family: $sans-serif
+
+// Sessions (login, signup, edit) -----------------------------------------*
+#session-page
+  margin-top: 3em
+
+  margin-left: auto
+  margin-right: auto
+
+  background-color: blue
+
+  .form-vertical
+    background-color: red
+
+    .form-field
+      background-color: purple
+      padding: 2em
+
+
+// Header -----------------------------------------*
+#header
+  width: 100%
+  color: white
+  background-color: black
+  // z-index: 9999999999
+  height: 3em
+  position: fixed
+  top: 0
+
+  .brand 
+    height: 3em
+
+// Footer -----------------------------------------*
+#footer
+  position: fixed
+  bottom: 0
+  .made-in-ny
+    float: left
+    padding: 1em
+    bottom: 0
+
+
+/* ----- SimpleForm Styles ----- */
+
+.simple_form
+  div.input
+    margin-bottom: 10px
+    clear: both
+
+  div.input
+    margin-bottom: 10px
+    clear: both
+    background-color: purple
+
+  label
+    float: left
+    width: 100px
+    text-align: right
+    margin: 2px 10px
+
+  .error
+    clear: left
+    color: black
+    display: block
+    margin-left: 120px
+
+  .hint
+    clear: left
+    margin-left: 120px
+    color: #555
+    display: block
+    font-style: italic
+
+div.boolean, .simple_form input[type='submit']
+  margin-left: 120px
+
+div.boolean label, label.collection_radio_buttons
+  float: none
+  margin: 0
+
+label.collection_radio_buttons
+  margin-right: 10px
+  vertical-align: -2px
+  margin-left: 2px
+
+.field_with_errors
+  background-color: #ff3333
+
+input.radio
+  margin-right: 5px
+  vertical-align: -3px
+
+input.textarea
+  background-color: purple
+
+input.string
+  background-color: purple
+
+input.check_boxes
+  margin-left: 3px
+  vertical-align: -3px
+
+label.collection_check_boxes
+  float: none
+  margin: 0
+  vertical-align: -2px
+  margin-left: 2px
+
+
+
